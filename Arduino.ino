@@ -61,6 +61,9 @@ void loop()
     {
       displayUltrasonic = false; 
     }
+    else if (input == "runfunc") {
+      scanServoAndMeasure();
+    }
   }
 
   if (displayUltrasonic)
@@ -70,5 +73,25 @@ void loop()
     Serial.print(distance);
     Serial.println(" cm");
     delay(100); 
+  }
+}
+
+void scanServoAndMeasure() {
+  Serial.println("Servo2 Angle,Servo1 Angle,Distance(cm)");  
+  for (int angle2 = 0; angle2 <= 45; angle2 += 5) {
+    servo2.write(angle2);
+    delay(200);
+    for (int angle1 = 0; angle1 <= 180; angle1++) {
+      servo1.write(angle1);
+      delay(200);  
+      unsigned int distance = sonar.ping_cm();
+      Serial.print(angle2);
+      Serial.print(",");
+      Serial.print(angle1);
+      Serial.print(",");
+      Serial.println(distance);
+    }
+    servo1.write(0);  
+    delay(200);  
   }
 }
