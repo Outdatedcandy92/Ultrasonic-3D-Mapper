@@ -77,13 +77,13 @@ void loop()
 }
 
 void scanServoAndMeasure() {
-  Serial.println("Servo2 Angle,Servo1 Angle,Distance(cm)");  
+  Serial.println("Mapping Started");  
   for (int angle2 = 0; angle2 <= 45; angle2 += 5) {
     servo2.write(angle2);
-    delay(200);
-    for (int angle1 = 0; angle1 <= 180; angle1++) {
+    delay(300);
+    for (int angle1 = 30; angle1 <= 150; angle1++) {
       servo1.write(angle1);
-      delay(200);  
+      delay(300);  
       unsigned int distance = sonar.ping_cm();
       Serial.print(angle2);
       Serial.print(",");
@@ -92,6 +92,7 @@ void scanServoAndMeasure() {
       Serial.println(distance);
     }
     servo1.write(0);  
-    delay(200);  
+    delay(300);  
   }
+  Serial.println("Mapping Finished");
 }

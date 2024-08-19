@@ -13,6 +13,7 @@ ser.write(b'runfunc\n')
 def read_data():
     storing_data = False
     main_started = False
+    start_time = time.time()  
 
     try:
         with open('data.txt', 'ab') as file:  
@@ -36,6 +37,9 @@ def read_data():
                             subprocess.Popen(['python', 'main.py'])
                             main_started = True
     except KeyboardInterrupt:
+        end_time = time.time()  
+        elapsed_time = end_time - start_time
+        print(f"Total time taken: {elapsed_time:.2f} seconds")
         print("Interrupted by user. Exiting...")
     finally:
         ser.close()  

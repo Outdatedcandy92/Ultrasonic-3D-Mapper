@@ -45,6 +45,6 @@ if __name__ == "__main__":
                     y = (math.cos(z)) * y
                     y_data.append(y)
                 update_graph()
-            time.sleep(5)
+            time.sleep(10)
     except KeyboardInterrupt:
         pass
